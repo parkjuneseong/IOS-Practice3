@@ -10,11 +10,10 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainViewController" customModule="IOS_Practice3" customModuleProvider="target">
             <connections>
-                <outlet property="collectionView" destination="8zr-W1-37w" id="3d3-Hf-nwl"/>
+                <outlet property="collectionView" destination="q6b-iV-Vpy" id="6Tk-sb-eyY"/>
                 <outlet property="headerView" destination="6Hz-ow-kPf" id="Ze0-jQ-KHr"/>
                 <outlet property="kakaoTV" destination="xQr-C9-buU" id="tQ9-vb-gtR"/>
                 <outlet property="searchField" destination="22e-Rp-SV0" id="kqJ-u2-TF9"/>
-                <outlet property="secondView" destination="uyH-7b-l1h" id="RR8-2n-hOU"/>
                 <outlet property="segmentController" destination="DAN-dd-T3c" id="tEM-XH-C5W"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -24,20 +23,6 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="8zr-W1-37w" customClass="MainViewController.xib">
-                    <rect key="frame" x="0.0" y="224" width="414" height="638"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="wn9-QX-k1d">
-                        <size key="itemSize" width="128" height="128"/>
-                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
-                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                    </collectionViewFlowLayout>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="fBt-PA-BSs"/>
-                        <outlet property="delegate" destination="-1" id="diq-mP-fK2"/>
-                    </connections>
-                </collectionView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Hz-ow-kPf">
                     <rect key="frame" x="0.0" y="44" width="414" height="180"/>
                     <subviews>
@@ -118,26 +103,29 @@
                         <constraint firstItem="DAN-dd-T3c" firstAttribute="top" secondItem="22e-Rp-SV0" secondAttribute="bottom" constant="30" id="y1a-91-9iV"/>
                     </constraints>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" id="uyH-7b-l1h">
-                    <rect key="frame" x="0.0" y="224" width="414" height="556"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="q6b-iV-Vpy">
+                    <rect key="frame" x="0.0" y="224" width="414" height="638"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="jRo-Re-rc6">
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="GOY-42-7oO">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="zC9-Uo-7Ky"/>
+                        <outlet property="delegate" destination="-1" id="Z1Y-IV-0hD"/>
+                    </connections>
                 </collectionView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="8zr-W1-37w" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4wh-P0-oX7"/>
-                <constraint firstItem="8zr-W1-37w" firstAttribute="top" secondItem="6Hz-ow-kPf" secondAttribute="bottom" id="DCw-ry-sZA"/>
-                <constraint firstItem="8zr-W1-37w" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Nxf-bO-FDR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="q6b-iV-Vpy" secondAttribute="bottom" id="MzH-R1-QqH"/>
                 <constraint firstAttribute="trailing" secondItem="6Hz-ow-kPf" secondAttribute="trailing" id="Rux-sM-NyC"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="8zr-W1-37w" secondAttribute="bottom" id="kgb-1f-50O"/>
+                <constraint firstItem="q6b-iV-Vpy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="fCq-bj-UEG"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="q6b-iV-Vpy" secondAttribute="trailing" id="hkH-s5-8Co"/>
+                <constraint firstItem="q6b-iV-Vpy" firstAttribute="top" secondItem="6Hz-ow-kPf" secondAttribute="bottom" id="qPT-aC-dR0"/>
                 <constraint firstItem="6Hz-ow-kPf" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="rL6-Ba-Q7F"/>
                 <constraint firstItem="6Hz-ow-kPf" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="tKC-3f-jCg"/>
             </constraints>

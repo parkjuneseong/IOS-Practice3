@@ -9,24 +9,34 @@
 
 import UIKit
 
-     
-    class Json: NSObject {
-        static let shared = Json()
-        
-        func parsing() -> [LivelistModel] {
-            var liveListModel: [LivelistModel] = []
-            let jsonDecoder: JSONDecoder = JSONDecoder()
-            guard let liveDataAsset: NSDataAsset = NSDataAsset.init(name: "live") else {
-                return []
-            }
-            
-            do {
-                liveListModel =  try jsonDecoder.decode([LivelistModel].self, from: liveDataAsset.data)
-            } catch let error {
-                print("error: ", error)
-            }
-            
-            return liveListModel
+enum ParsingType {
+    case live
+    case original
+}
+
+class Json: NSObject {
+    static let shared = Json()
+    
+    func parsing(type: ParsingType) -> [LivelistModel] {
+        var liveListModel: [LivelistModel] = []
+        let jsonDecoder: JSONDecoder = JSONDecoder()
+        var fileName = ""
+        if type == .live {
+            fileName = "live"
+        } else {
+            fileName = "original"
         }
+        guard let liveDataAsset: NSDataAsset = NSDataAsset.init(name: fileName) else {
+            return []
+        }
+        
+        do {
+            liveListModel =  try jsonDecoder.decode([LivelistModel].self, from: liveDataAsset.data)
+        } catch let error {
+            print("error: ", error)
+        }
+        
+        return liveListModel
     }
+}
 
