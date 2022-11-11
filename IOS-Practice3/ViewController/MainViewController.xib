@@ -32,8 +32,8 @@
                                 <constraint firstAttribute="width" constant="150" id="vX8-Ft-aWf"/>
                             </constraints>
                             <segments>
-                                <segment title="First"/>
-                                <segment title="Second"/>
+                                <segment title="오리지널"/>
+                                <segment title="라이브"/>
                             </segments>
                             <connections>
                                 <action selector="segmentAction:" destination="-1" eventType="valueChanged" id="y62-ZJ-Gnu"/>

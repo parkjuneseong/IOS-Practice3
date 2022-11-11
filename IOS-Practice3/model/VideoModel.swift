@@ -6,10 +6,12 @@
 //
 
 import UIKit
-struct LivelistModel : Codable {
+struct VideoModel : Codable {
     let id : Int?
     let channelId: Int?
     let displayTitle: String?
     let createTime : String?
-    
+    let channel: ChannelModel?
+    let live: LiveModel?
+    let clip: ClipModel?
 }

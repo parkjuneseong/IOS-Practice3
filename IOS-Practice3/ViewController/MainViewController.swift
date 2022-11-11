@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CloudKit
 
 class MainViewController: UIViewController {
     @IBOutlet weak var searchField: UITextField!
@@ -15,8 +16,8 @@ class MainViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var headerView: UIView!
-    var liveList: [LivelistModel] = []
-    var originalList: [LivelistModel] = []
+    var liveList: [VideoModel] = []
+    var originalList: [VideoModel] = []
 //    var list1 = ["1", "2", "3", "4", "5", "6"] // segmentControl index == 0 --> 오리지날
 //    var list2 = ["2", "4", "6", "8"]    // segmentControl index == 1 --> 라이브
     override func viewDidLoad() {
@@ -37,17 +38,31 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath as IndexPath) as? CollectionViewCell
-        if segmentController.selectedSegmentIndex == 0 {
-            cell?.bind(title: liveList[indexPath.row].displayTitle ?? "", name:  "", image: UIImage(), create: "", visit: 0)
+        if segmentController.selectedSegmentIndex == 1 {
+            cell?.bind(
+                title: liveList[indexPath.row].displayTitle ?? "",
+                name: liveList[indexPath.row].channel?.name ?? "",
+                image: liveList[indexPath.row].live?.thumbnailUrl ?? "",
+                create: liveList[indexPath.row].createTime ?? "",
+                visit: liveList[indexPath.row].channel?.visitCount ?? 0,
+                player: liveList[indexPath.row].live?.playCount ?? 0
+            )
         } else{
-            cell?.bind(title: originalList[indexPath.row].displayTitle ?? "", name: "", image: UIImage(), create: "", visit: 0)
+            cell?.bind(
+                title: originalList[indexPath.row].displayTitle ?? "",
+                name: originalList[indexPath.row].channel?.name ?? "",
+                image: originalList[indexPath.row].clip?.thumbnailUrl ?? "",
+                create: originalList[indexPath.row].createTime ?? "",
+                visit: originalList[indexPath.row].channel?.visitCount ?? 0,
+                player: originalList[indexPath.row].clip?.duration ?? 0
+            )
         }
         
         return cell ?? CollectionViewCell()     //return your cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if segmentController.selectedSegmentIndex == 0 {
+        if segmentController.selectedSegmentIndex == 1 {
             return liveList.count
         } else {
             return originalList.count
@@ -74,11 +89,11 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionFooter {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionReusableView", for: indexPath)
-            view.backgroundColor = .yellow
+          
             return view
         } else {
             let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "CollectionReusableView", for: indexPath)
-            view.backgroundColor = .blue
+   
             return view
         }
     }

@@ -17,8 +17,8 @@ enum ParsingType {
 class Json: NSObject {
     static let shared = Json()
     
-    func parsing(type: ParsingType) -> [LivelistModel] {
-        var liveListModel: [LivelistModel] = []
+    func parsing(type: ParsingType) -> [VideoModel] {
+        var liveListModel: [VideoModel] = []
         let jsonDecoder: JSONDecoder = JSONDecoder()
         var fileName = ""
         if type == .live {
@@ -31,7 +31,7 @@ class Json: NSObject {
         }
         
         do {
-            liveListModel =  try jsonDecoder.decode([LivelistModel].self, from: liveDataAsset.data)
+            liveListModel =  try jsonDecoder.decode([VideoModel].self, from: liveDataAsset.data)
         } catch let error {
             print("error: ", error)
         }
