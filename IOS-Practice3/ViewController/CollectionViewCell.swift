@@ -16,14 +16,28 @@ class CollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var titleName: UILabel!
     @IBOutlet weak var authorName: UILabel!
     
+    
+    @IBOutlet weak var emojiLabel: UILabel!
+    
+
     func bind(title : String , name : String , image : String,
-              create : String, visit : Int, player: Int){
+              create : String, visit : Int, player: Int,dur:Int){
         titleName.text = title
         authorName.text = name
         createTime.text = create
         visitCount.text = "▶︎ \(visit)"
         titleImage.image = UIImage(named: image)
         playCount.text = "\(player)"
+        playCount.text = "\(dur)"
+        createTime.text = Convert.shared.convertTime(time:create)
+        visitCount.text = Convert.shared.convertCount(count:visit)
+       // titleName.text = Convert.shared.convertCC(display: title)
+        emojiLabel.text = "▶︎"
+        playCount.text = Convert.shared.convertDuration(duration: dur)
+        
     }
+   
     
 }
+
+
