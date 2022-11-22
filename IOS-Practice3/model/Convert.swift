@@ -29,16 +29,16 @@ class Convert: NSObject {
         let currentDate = Date()
         let diffComponents = Calendar.current.dateComponents([.second, .minute, .hour, .day], from:date, to: currentDate)
         if (diffComponents.day != 0){
-            return " *\(diffComponents.day ?? 0) 일전"
+            return "• \(diffComponents.day ?? 0)일 전"
         }
         else if (diffComponents.hour != 0){
-            return " *\(diffComponents.hour ?? 0) 시간 전"
+            return "• \(diffComponents.hour ?? 0)시간 전"
         }
         else if (diffComponents.minute != 0){
-            return " *\(diffComponents.minute ?? 0) 분전"
+            return "• \(diffComponents.minute ?? 0)분 전"
     }
         else {
-            return " *\(diffComponents.second ?? 0) 초전"
+            return "• \(diffComponents.second ?? 0)초 전"
         }
     }
     //데이터 가져와서 분전 초전 일전 개월전으로 나누기

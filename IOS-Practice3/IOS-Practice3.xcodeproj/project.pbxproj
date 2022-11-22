@@ -25,6 +25,10 @@
 		8C84A724291E27760020D83F /* LiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A723291E27760020D83F /* LiveModel.swift */; };
 		8C84A726291E278F0020D83F /* ClipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A725291E278F0020D83F /* ClipModel.swift */; };
 		8C84A728291E39C10020D83F /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A727291E39C10020D83F /* Convert.swift */; };
+		8CF06E392927749C00EEF481 /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF06E372927749C00EEF481 /* HeartViewController.swift */; };
+		8CF06E3A2927749C00EEF481 /* HeartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF06E382927749C00EEF481 /* HeartViewController.xib */; };
+		8CF06E3D2927760000EEF481 /* HeartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF06E3B2927760000EEF481 /* HeartTableViewCell.swift */; };
+		8CF06E3E2927760000EEF481 /* HeartTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF06E3C2927760000EEF481 /* HeartTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +52,10 @@
 		8C84A723291E27760020D83F /* LiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveModel.swift; sourceTree = "<group>"; };
 		8C84A725291E278F0020D83F /* ClipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipModel.swift; sourceTree = "<group>"; };
 		8C84A727291E39C10020D83F /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
+		8CF06E372927749C00EEF481 /* HeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
+		8CF06E382927749C00EEF481 /* HeartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeartViewController.xib; sourceTree = "<group>"; };
+		8CF06E3B2927760000EEF481 /* HeartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartTableViewCell.swift; sourceTree = "<group>"; };
+		8CF06E3C2927760000EEF481 /* HeartTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeartTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +90,10 @@
 		8C5080382914E311002CD28E /* IOS-Practice3 */ = {
 			isa = PBXGroup;
 			children = (
+				8CF06E372927749C00EEF481 /* HeartViewController.swift */,
+				8CF06E382927749C00EEF481 /* HeartViewController.xib */,
+				8CF06E3B2927760000EEF481 /* HeartTableViewCell.swift */,
+				8CF06E3C2927760000EEF481 /* HeartTableViewCell.xib */,
 				8C5080392914E311002CD28E /* AppDelegate.swift */,
 				8C5080422914E315002CD28E /* Assets.xcassets */,
 				8C5080442914E315002CD28E /* LaunchScreen.storyboard */,
@@ -180,8 +192,10 @@
 				8C5FC7DB29178B7C00A2A886 /* LiveCollectionView.xib in Resources */,
 				8C84A720291E13880020D83F /* CollectionReusableView.xib in Resources */,
 				8C5080462914E315002CD28E /* LaunchScreen.storyboard in Resources */,
+				8CF06E3A2927749C00EEF481 /* HeartViewController.xib in Resources */,
 				8C5080502914E916002CD28E /* MainViewController.xib in Resources */,
 				8C50805E2914FB42002CD28E /* CollectionViewCell.xib in Resources */,
+				8CF06E3E2927760000EEF481 /* HeartTableViewCell.xib in Resources */,
 				8C5080432914E315002CD28E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -197,9 +211,11 @@
 				8C84A728291E39C10020D83F /* Convert.swift in Sources */,
 				8C84A71F291E13880020D83F /* CollectionReusableView.swift in Sources */,
 				8C84A726291E278F0020D83F /* ClipModel.swift in Sources */,
+				8CF06E392927749C00EEF481 /* HeartViewController.swift in Sources */,
 				8C50805A2914EFD4002CD28E /* Json.swift in Sources */,
 				8C50805D2914FB42002CD28E /* CollectionViewCell.swift in Sources */,
 				8C5080542914EC93002CD28E /* VideoModel.swift in Sources */,
+				8CF06E3D2927760000EEF481 /* HeartTableViewCell.swift in Sources */,
 				8C84A724291E27760020D83F /* LiveModel.swift in Sources */,
 				8C50804F2914E916002CD28E /* MainViewController.swift in Sources */,
 				8C5FC7DD29179B0600A2A886 /* Theme.swift in Sources */,

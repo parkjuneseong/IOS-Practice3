@@ -8,7 +8,9 @@
 import UIKit
 import CloudKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController{
+    
+    
     @IBOutlet weak var searchField: UITextField!
     
     @IBOutlet weak var kakaoTV: UILabel!
@@ -20,24 +22,68 @@ class MainViewController: UIViewController {
     var originalList: [VideoModel] = []
     
     //    var list1 = ["1", "2", "3", "4", "5", "6"] // segmentControl index == 0 --> 오리지날
-    //    var list2 = ["2", "4", "6", "8"]    // segmentControl index == 1 --> 라이브
+    //    var list2 = ["2", "4", "6", "8"]    // segmentControl index == 1 --> 라이브purchaseButton.addTarget(self, action:
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+     
         collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView.register(UINib(nibName:"CollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionReusableView")
         collectionView.register(UINib(nibName:"CollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionReusableView")
         liveList = Json.shared.parsing(type: .live)
         originalList = Json.shared.parsing(type: .original)
+    }
+    @objc
+    func longPressAction(_ sender: UILongPressGestureRecognizer) {
+        if sender.state != UIGestureRecognizer.State.ended{
+            return
+        }
+        let touch : CGPoint = sender.location(in: self.collectionView)
+        let indexPath: IndexPath = self.collectionView.indexPathForItem(at: touch) ?? IndexPath()
+        var userDefaultsArray = UserDefaults.standard.array(forKey: "like") as? [Int] ?? []  // 가져오기
+        var isLike = false
+        if segmentController.selectedSegmentIndex == 1 {
+            if userDefaultsArray.contains(liveList[indexPath.row].id ?? 0 ) {
+                isLike = true
+                if let index = userDefaultsArray.firstIndex(of: liveList[indexPath.row].id ?? 0){
+                    userDefaultsArray.remove(at:index)
+                }
+            }
+            else {
+                isLike = false
+                userDefaultsArray.append(liveList[indexPath.row].id ?? 0)
+            }
+        }
+    let image = isLike ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         
+        let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
+            cell?.animationImageView.image = image
+        UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {
+            cell?.animationImageView.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
+            cell?.animationImageView.alpha = 1.0
+        }) {
+            finished in
+            cell?.animationImageView.alpha = 0.0
+            cell?.animationImageView.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+        }
+        UserDefaults.standard.set(userDefaultsArray, forKey: "like")
     }
     @IBAction func segmentAction(_ sender: UISegmentedControl) {
         collectionView.reloadData()
         
     }
+    
+    
+    @IBAction func touchButton(_ sender: Any) {
+   
+            let vc =  HeartViewController()
+            
+            self.present(vc, animated: true)
+        
+    }
+    
 }
 
-extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CollectionViewCell", for: indexPath as IndexPath) as? CollectionViewCell
@@ -49,8 +95,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 image: liveList[indexPath.row].live?.thumbnailUrl ?? "",
                 create: liveList[indexPath.row].createTime ?? "",
                 visit: liveList[indexPath.row].channel?.visitCount ?? 0,
-                player: liveList[indexPath.row].live?.playCount ?? 0,
-                dur: liveList[indexPath.row].live?.playCount ?? 0
+                playCnt: liveList[indexPath.row].live?.playCount ?? 0,
+                dur: liveList[indexPath.row].live?.playCount ?? 0,
+                type:.live
             )
         } else{
             cell?.bind(
@@ -59,12 +106,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 image: originalList[indexPath.row].clip?.thumbnailUrl ?? "",
                 create: originalList[indexPath.row].createTime ?? "",
                 visit: originalList[indexPath.row].channel?.visitCount ?? 0,
-                player: originalList[indexPath.row].clip?.duration ?? 0,
-                dur:originalList[indexPath.row].clip?.duration ?? 0
+                playCnt: originalList[indexPath.row].clip?.duration ?? 0,
+                dur:originalList[indexPath.row].clip?.duration ?? 0,
+                type:.original
             )
             
         }
         
+        let longPressRecognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPressAction(_:)))
+        cell?.addGestureRecognizer(longPressRecognizer)
         
         return cell ?? CollectionViewCell()     //return your cell
     }
@@ -122,4 +172,5 @@ extension Date{
         formatter.unitsStyle = .abbreviated
         return formatter.localizedString(for: self, relativeTo: Date())
     }
+    
 }
