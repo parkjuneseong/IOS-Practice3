@@ -25,7 +25,17 @@ class MainViewController: UIViewController{
     //    var list2 = ["2", "4", "6", "8"]    // segmentControl index == 1 --> 라이브purchaseButton.addTarget(self, action:
     override func viewDidLoad() {
         super.viewDidLoad()
-     
+//        if UIDevice.current.isiPad{
+//            func numberOfSections(in collectionView: UICollectionView) -> Int {
+//                return 1
+//            }
+//            func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//                let width: CGFloat = collectionView.bounds.width - 40
+//                let height: CGFloat = 270 // collectionViewCell 높이
+//
+//                return CGSize(width: width, height: height)
+//            }
+//        }
         collectionView.register(UINib(nibName: "CollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "CollectionViewCell")
         collectionView.register(UINib(nibName:"CollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "CollectionReusableView")
         collectionView.register(UINib(nibName:"CollectionReusableView", bundle: nil), forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withReuseIdentifier: "CollectionReusableView")
@@ -47,16 +57,27 @@ class MainViewController: UIViewController{
                 if let index = userDefaultsArray.firstIndex(of: liveList[indexPath.row].id ?? 0){
                     userDefaultsArray.remove(at:index)
                 }
-            }
-            else {
+            } else {
                 isLike = false
                 userDefaultsArray.append(liveList[indexPath.row].id ?? 0)
+                }
+            }
+            else {
+                if userDefaultsArray.contains(originalList[indexPath.row].id ?? 0){
+                isLike = true
+                if let index = userDefaultsArray.firstIndex(of: originalList[indexPath.row].id ?? 0){
+                    userDefaultsArray.remove(at:index)
+                }
+            } else {
+                    isLike = false
+                    userDefaultsArray.append(originalList[indexPath.row].id ?? 0)
+                
             }
         }
-    let image = isLike ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
+        let image = isLike ? UIImage(systemName: "heart") : UIImage(systemName: "heart.fill")
         
         let cell = collectionView.cellForItem(at: indexPath) as? CollectionViewCell
-            cell?.animationImageView.image = image
+        cell?.animationImageView.image = image
         UIView.animate(withDuration: 0.6, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.2, options: .allowUserInteraction, animations: {
             cell?.animationImageView.transform = CGAffineTransform(scaleX: 1.6, y: 1.6)
             cell?.animationImageView.alpha = 1.0
@@ -74,10 +95,10 @@ class MainViewController: UIViewController{
     
     
     @IBAction func touchButton(_ sender: Any) {
-   
-            let vc =  HeartViewController()
-            
-            self.present(vc, animated: true)
+        
+        let vc =  HeartViewController()
+        
+        self.present(vc, animated: true)
         
     }
     
@@ -158,6 +179,7 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return CGSize(width: collectionView.bounds.width, height: 20)
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
@@ -173,4 +195,34 @@ extension Date{
         return formatter.localizedString(for: self, relativeTo: Date())
     }
     
+
 }
+//
+//extension UIDevice {
+//    public var isiPhoneSE: Bool {
+//        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone && (UIScreen.main.bounds.size.height == 568 || UIScreen.main.bounds.size.width == 320) {
+//            return true
+//        }
+//        return false
+//    }
+//    public var isiPhonePlus: Bool {
+//        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.phone && (UIScreen.main.bounds.size.height == 736 || UIScreen.main.bounds.size.width == 414) {
+//            return true
+//        }
+//        return false
+//    }
+//
+//    public var isiPad: Bool {
+//        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad && (UIScreen.main.bounds.size.height == 1024 || UIScreen.main.bounds.size.width == 768) {
+//            return true
+//        }
+//        return false
+//    }
+//    public var isiPadPro12: Bool {
+//        if UIDevice.current.userInterfaceIdiom == UIUserInterfaceIdiom.pad && (UIScreen.main.bounds.size.height == 1366 || UIScreen.main.bounds.size.width == 1366) {
+//            return true
+//        }
+//        return false
+//    }
+//
+//}

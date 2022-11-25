@@ -19,16 +19,21 @@ class HeartViewController: UIViewController{
         
         
         heartTableView.register(UINib(nibName: "HeartTableViewCell", bundle: nil), forCellReuseIdentifier: "HeartTableViewCell")
+        heartTableView.delegate = self
+        heartTableView.dataSource = self
         //        self.navigationItem.title = "좋아요 목록"
         //        let button = UIBarButtonItem(title: String("clear"),style: .plain, target: self, action: #selector(clearButtonAction(_:)))
         //        self.navigationItem.rightBarButtonItem = button
         //        let vc =  HeartViewController()
         //
         //        self.present(vc, animated: true)
-        heartTableView.delegate = self
-        heartTableView.dataSource = self
+        getUserDefaults()
     }
-    
+    func getUserDefaults(){
+        let  userDefaultsArray = UserDefaults.standard.array(forKey: "live") as? [[String : String]] ?? []
+        liveList = userDefaultsArray
+        heartTableView.reloadData()
+    }
     //        @objc
     //        func clearButtonAction(_ sender: Any) {
     //            let vc = MainViewController()
@@ -51,6 +56,7 @@ extension HeartViewController : UITableViewDelegate,UITableViewDataSource{
         cell.bind(display: liveList[indexPath.row].displayTitle ?? "",
                   id:liveList[indexPath.row].channelId ?? 0,
                   name:liveList[indexPath.row].channel?.name ?? "" )
+        
  
         return cell
     }

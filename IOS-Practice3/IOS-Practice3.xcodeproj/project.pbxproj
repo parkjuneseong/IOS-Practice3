@@ -25,6 +25,7 @@
 		8C84A724291E27760020D83F /* LiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A723291E27760020D83F /* LiveModel.swift */; };
 		8C84A726291E278F0020D83F /* ClipModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A725291E278F0020D83F /* ClipModel.swift */; };
 		8C84A728291E39C10020D83F /* Convert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C84A727291E39C10020D83F /* Convert.swift */; };
+		8CDE7F9F292C9E65007E9B7A /* Sibal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CDE7F9E292C9E65007E9B7A /* Sibal.swift */; };
 		8CF06E392927749C00EEF481 /* HeartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF06E372927749C00EEF481 /* HeartViewController.swift */; };
 		8CF06E3A2927749C00EEF481 /* HeartViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8CF06E382927749C00EEF481 /* HeartViewController.xib */; };
 		8CF06E3D2927760000EEF481 /* HeartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CF06E3B2927760000EEF481 /* HeartTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 		8C84A723291E27760020D83F /* LiveModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveModel.swift; sourceTree = "<group>"; };
 		8C84A725291E278F0020D83F /* ClipModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClipModel.swift; sourceTree = "<group>"; };
 		8C84A727291E39C10020D83F /* Convert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Convert.swift; sourceTree = "<group>"; };
+		8CDE7F9E292C9E65007E9B7A /* Sibal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sibal.swift; sourceTree = "<group>"; };
 		8CF06E372927749C00EEF481 /* HeartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartViewController.swift; sourceTree = "<group>"; };
 		8CF06E382927749C00EEF481 /* HeartViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeartViewController.xib; sourceTree = "<group>"; };
 		8CF06E3B2927760000EEF481 /* HeartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeartTableViewCell.swift; sourceTree = "<group>"; };
@@ -127,6 +129,7 @@
 				8C84A723291E27760020D83F /* LiveModel.swift */,
 				8C84A725291E278F0020D83F /* ClipModel.swift */,
 				8C84A727291E39C10020D83F /* Convert.swift */,
+				8CDE7F9E292C9E65007E9B7A /* Sibal.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8CDE7F9F292C9E65007E9B7A /* Sibal.swift in Sources */,
 				8C50803A2914E311002CD28E /* AppDelegate.swift in Sources */,
 				8C84A728291E39C10020D83F /* Convert.swift in Sources */,
 				8C84A71F291E13880020D83F /* CollectionReusableView.swift in Sources */,
